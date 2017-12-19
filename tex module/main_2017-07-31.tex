@@ -1,0 +1,340 @@
+\documentclass[preprint,review,10pt]{elsarticle}
+
+%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
+%% for a journal layout:
+%%\documentclass[final,1p,times]{elsarticle}
+%%\documentclass[final,1p,times,twocolumn]{elsarticle}
+%%\documentclass[final,3p,times]{elsarticle}
+%\textwidth 17cm
+%\textheight 24cm
+%\hoffset -20mm
+%\voffset -20mm
+%\linespread{2.0}
+
+%\def\ds{\displaystyle}%\displaystyle}
+%\usepackage{cite}
+\usepackage{hyperref}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{amsmath, amssymb}
+
+\usepackage {graphicx,fancyhdr}
+\usepackage{graphics, color}
+%%%%%%\usepackage{paisubfigure}
+%\usepackage{amsthm}
+\usepackage{flafter}
+%\usepackage[subfigure]{caption2}
+\numberwithin{equation}{section}
+\usepackage{multirow}
+
+
+%
+\usepackage{amssymb}
+\usepackage{subfig}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%×Ô¶¨Òå%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\d{\delta}
+\def\ds{\displaystyle}
+\def\e{{\epsilon}}
+\def\eb{\bar{\eta}}
+\def\enorm#1{\|#1\|_2}
+\def\Fp{F^\prime}
+\def\fishpack{{FISHPACK}}
+\def\fortran{{FORTRAN}}
+\def\gmres{{GMRES}}
+\def\gmresm{{\rm GMRES($m$)}}
+
+\def\norm#1{\|#1\|}
+\def\wb{{\bar w}}
+\def\zb{{\bar z}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\Kc{{\mathcal{K}}}
+\newcommand\Bc{{\mathcal{B}}}
+\newcommand\Cc{{\mathcal{C}}}
+\newcommand\Ec{{\mathcal{E}}}
+\newcommand\Tc{{\mathcal{T}}}
+\newcommand{\pe}{\psi}
+\def\d{\delta}
+\def\D{\Delta}
+\def\ds{\displaystyle}
+\def\e{{\epsilon}}
+\def\O{{\Omega}}
+\def\o{{\omega}}
+\def\n{\nabla}
+\def\Eb{\bar{E}}
+\def\enorm#1{\|#1\|_2}
+\def\Fp{F^\prime}
+\def\fishpack{{FISHPACK}}
+\def\fortran{{FORTRAN}}
+\def\gmres{{GMRES}}
+\def\gmresm{{\rm GMRES($\Kc$)}}
+\def\norm#1{\|#1\|}
+\def\vn{\vec n}
+\def\qb{\bar q}
+\def\fb{{\bar f}}
+\def\ub{{\bar u}}
+\def\pb{{\bar p}}
+\def\tb{{\bar t}}
+\def\vb{\bar v}
+\def\mb{\bar m}
+\def\p{{\partial}}
+\def\Kc{{\mathcal{K}}}
+\def\Bc{{\mathcal{B}}}
+\def\Cc{{\mathcal{C}}}
+\def\Ec{{\cal E}}
+\def\Mc{{\cal M}}
+\def\no{{\nonumber}}
+\def\a{{\alpha}}
+\def\b{{\beta}}
+\def\var{\varepsilon}
+\def\g{{\gamma}}
+\def\l{{\lambda}}
+\def\G{{\Gamma}}
+\def\k{{\kappa}}
+\def\i{{\infty}}
+\def\s{{\sigma}}
+\def\r{{\rightarrow}}
+\def\t{\tau}
+\def\div{{\mbox{div}}}
+\def\min{\mbox{min}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% some definitions of bold math italics to make typing easier.
+% They are used in the corollary.
+
+\def\bfE{\mbox{\boldmath$E$}}
+\def\bfG{\mbox{\boldmath$G$}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+\begin{document}
+
+\begin{frontmatter}
+%% Title, authors and addresses
+
+%% use the tnoteref command within \title for footnotes;
+%% use the tnotetext command for theassociated footnote;
+%% use the fnref command within \author or \address for footnotes;
+%% use the fntext command for theassociated footnote;
+%% use the corref command within \author for corresponding author footnotes;
+%% use the cortext command for theassociated footnote;
+%% use the ead command for the email address,
+%% and the form \ead[url] for the home page:
+%% \title{Title\tnoteref{label1}}
+ %% \tnotetext[label1]{}
+%% \author{Name\corref{cor1}\fnref{label2}}
+%% \ead{email address}
+%% \ead[url]{home page}
+%% \fntext[label2]{}
+%% \cortext[cor1]{}
+%% \address{Address\fnref{label3}}
+%% \fntext[label3]{}
+\journal{Computers and Mathematics with Applications}
+ \tnotetext[label1]{The project is supported by  NSF of China (11601315) and (11601241),
+ the NUPTSF grant (NY215067), the Natural Science Foundation of Jiangsu Province grant (BK20160877) , and Shanghai Sailing Program (16YF1404000). }
+
+\title{Local discontinuous Galerkin methods
+with TVD Runge-Kutta time-marching for nonlinear Carburizing model\tnoteref{label1}}
+
+
+
+
+%\author[lab1]{ Ying Li\corref{cor1},  }
+%\cortext[cor1]{Corresponding author. E-mail address: yinglotus@t.shu.edu.cn}
+%
+%\author[lab2]{ 1}
+%
+%
+%\address[lab1]{School of Computer Engineering and Science, Shanghai University, Shanghai, 2000444, China }
+%\address[lab2]{College of Science, Shanghai University, Shanghai, 2000444, China }
+
+
+\begin{abstract}
+
+
+\end{abstract}
+
+
+\begin{keyword}
+
+
+\end{keyword}
+
+\end{frontmatter}
+
+
+
+
+\section{Introduction}%{INTRODUCTION}%%
+
+\setcounter{equation}{0}
+
+A fully discrete local discontinuous Galerkin (LDG) scheme
+coupled with total variation diminishing Runge-Kutta time discretization,
+for solving a nonlinear carburizing model
+is introduced and analyzed in this paper.
+The one-dimensional carburizing model is given by
+\begin{equation} \label{eq:model}
+\left\{ \begin{array}{ll}
+c_t = (D(c)c_x)_x,  \\
+c(x,0) = c_0(x),  \\
+c(-L,t)=c_l, \quad c(L,t)=c_r,
+                \end{array} \right.
+\end{equation}
+in $x \in \Omega= [-L,L]$ and $t\in [0,T]$.
+
+In this paper, we would like to adopt the following hypothesis (\textbf{H}) for $D(c)$:
+\begin{enumerate}
+  \item There exist positive constants $d_{\star}$ and $d^{\star}$
+  such that $d_{\star} \le D(c) \le d^{\star}$.
+  \item $D(c)$ is uniformly Lipschitz continuous with respect to $c$, i.e, there exists
+  positive constant $C_{\star}$ such that $|D(c_1)-D(c_2)|\le C_{\star}|c_1-c_2|$.
+\end{enumerate}
+
+
+\section{The LDG schemes}
+\setcounter{equation}{0}
+\label{sec2}
+In this section, we will present the semi-discrete and fully-discrete LDG schemes
+for solving the carburizing problem (\ref{eq:model}).
+
+
+\section{Preliminaries}
+
+\section{The }%{THE SECOND-ORDER STABILIZED FINITE ELEMENT METHOD}%%
+
+
+
+
+\section{Numerical simulations}%{NUMERICAL SIMULATIONS}%
+
+
+
+
+\subsection{Rates of convergence study}
+
+\subsection{Rayleigh-Taylor instability}
+
+
+\section{Conclusion}%{CONCLUSION}%
+In this paper, we proposed a second-order mixed stabilized finite element method based on pressure projection method for variable density incompressible flows.
+ The new method uses a second-order time splitting, solving
+separately the transport equation  and the momentum equation.
+To be more specific, the space discretization uses the same low order  $P_{1}$ finite element spaces over triangles.
+ This method is designed by the difference of a consistent and under-integrated mass matrix of the pressure
+ in order to stabilize the lowest equal-order finite element pairs in the last two equations.
+  The time discretizations uses a second-order accurate scheme.
+  The stability proof of the method we proposed for variable density
+flows was given in the paper.
+
+
+
+
+To verify the correctness of the method, it has been applied to the
+test cases previously considered in the literature.
+First, the rates of convergence of the method were given and
+we obtained a better convergence rates compared with the results presented in time.
+At the same time, the space rates of convergence of the method were proved to be
+ in accordance with the theoretical expected ones,  leading so to an accurate solver.
+Then, the simulation of the viscous Rayleigh-Taylor instability was also investigated.
+The simulation results coincided with the law of physics and are very close to  the results presented in the literature.
+Last, we considered the falling bubble test to investigate the robustness property of the scheme with regards to
+high density ratios. We obtained very good results.
+Compared with some established methods,
+numerical results show that new method exhibited good stability
+behavior even the high density ratios or the high Atwood number are used
+in computation.
+
+
+
+
+
+\begin{thebibliography}{10}
+
+\bibitem{R1}   J. L. Guermond and  A. Salgado,   A splitting method for incompressible flows with variable density based on a pressure Poisson equation, J. Comput. Phys.  228(2009)2834-2846.
+\bibitem{R2}   J. H. Pyo and J. Shen,   Gauge-Uzawa methods for incompressible flows with variable density,  J. Comput. Phys. 221(2007)181-197.
+\bibitem{R3}   A. J. Chorin,   Numerical solution of the Navier-Stokes equations, Math. Comput.  22(1968)745-762.
+\bibitem{R4}   A. J. Chorin,  On the convergence of discrete approximations to the Navier-Stokes equations, Math. Comput.  23(1969)341-353.
+\bibitem{R5}   R. Temam,    Navier-Stokes Equations, Studies in Mathematics and Its Applications 2, North-Holland, Amsterdam, 1977.
+\bibitem{R6}   R. Temam,    Sur l'approximation des ¨¦quatious de Navier-Stokes par la m¨¦thode des pas fractionnaires (II), Arch. Ration. Mech. An.  33(1969)377-385.
+\bibitem{R7}   J. L. Guermond, P. Minev and J. Shen,   An overview of projection methods for incompressible flows, Methods. Appl. Mech. Eng.  195(2006)6011-6045.
+\bibitem{R8}   J. L. Guermond and L. Quartapelle,    A projection FEM for variable density incompressible flows, J. Comput. Phys.  165( 2000)167-188.
+\bibitem{R9}   Y. Fraigneau, J. L. Guermond and L. Quartapelle,  Approximation of variable density incompressible flows by means of finite elements and finite volumes,  Commun. Numer. Meth. En. 17(2001)893-902.
+\bibitem{R10}  G. P. Puckett, A. S. Almgren, J. B. Bell, D. L. Marcus and W. Rider,    A high-order projection method for tracking fluid interfaces in variable density incompressible flows, J. Comput. Phys.   130(1997) 269-282.
+\bibitem{R11}  G. C. Buscaglia and R. Codina,    Fourier analysis of an equal-order incompressible flow solver stabilized by pressure gradient projection, Int. J. Numer. Methods. Fluids. 34(2000)65-92.
+\bibitem{R12}  J. B. Bell and D. L. Marcus,    A second order projection method for variable-density flows, J. Comput. Phys.  101(1992)334-348.
+\bibitem{R13}  A. S. Almgren , J. B. Bell,  P. Colella, L.H. Howell and M.L. Welcome,   A conservative adaptive projection method for the variable density incompressible Navier-Stokes equations, J. Comput. Phys.  142(1998) 1-46.
+\bibitem{R14}  C. Calgaro, E. Creuse and T. Goudon,     An hybrid finite volume-finite element method for variable density incompressible flows,  J. Comput. Phys.  227(2008)4671-4696.
+\bibitem{R15}  J. L. Guermond and A. J. Salgado,   Error analysis of a fractional time-stepping technique for incompressible flows with variable density, SIAM J. Numer. Anal. 49(2011)917-944.
+\bibitem{R16}  J. Li and Y. He,   A stabilized finite element method based on two local Gauss integrations for the Stokes equations, J. Comput. Appl. Math. 214(2008)58-65.
+\bibitem{R17}  Y. He and J. Li,    A stabilized finite element method based on local polynomial pressure projection for the stationary Navier-Stokes equations, Appl. Numer. Math.  58(2008)1503-1514.
+\bibitem{lhc} J. Li, Y. He and Z. Chen,  A new stabilized finite element method  for the transient Navier-Stokes equations, Comput. Methods. Appl. Mech. Eng. 197(2007)22-35.
+\bibitem{R18}  J. L. Guermond,    Stabilization of Galerkin approximations of transport equations by subgrid modeling,  M2AN Math. Model. Numer. Anal.  33(1999)1293-1316.
+\bibitem{Donea} J. Donea, A. Huerta, Finite Element Methods for Flow Problems, John Wiley \& Sons Ltd, England, 2004.
+\bibitem{R19}  P. B. Bochev, C. R. Dohrmann and M. D. Gunzburger,   Stabilization of low-order mixed finite elements for the stokes equations, SIAM J. Numer. Anal.   44(2006)82-101.
+\bibitem{R20}  C. R. Dohrmann and P. B. Bochev,   A stabilized finite element method for the Stokes problem based on polynomial pressure projections,  Int. J. Numer. Methods. Fluids.  46(2004)183-201.
+\bibitem{R21}  V. Girault and P. A. Raviart,   Finite Element Methods for Navier-Stokes Equations, Springer Series in Computational Mathematics,  Springer-Verlag, Berlin, 1986.
+\bibitem{R22}  A. Ern and J. L. Guermond,   Theory and Practice of Finite Elements, Applied Mathematical Sciences,
+  Springer-Verlag, New York, 2004.
+%\bibitem{R23}  R. Temam,    Navier-Stokes Equations, Theory and Numerical Analysis, Reprint of the 1984 edition, AMS Chelsea Publishing, Providence, RI, 2001.
+\bibitem{R24}  R. A. Adams,   Sobolev Spaces, Academic Press, New York, 1975.
+\bibitem{R25}  L. C. Evans,   Partial Differential Equations, American Mathematical Society, 1998.
+\bibitem{R26}  Z. Chen,   Finite Element Methods and Their Applications, Scientific Computation, Springer, Berlin, 2005.
+\bibitem{R27}  G. Tryggvason,   Numerical simulations of the Rayleigh-Taylor instability,  J. Comput. Phys.   75(1988)235-282.
+\bibitem{R28}  T. Schneider, N. Botta, K. J. Geratz and R. Klein,    Extension of finite volume compressible flow solvers to multidimensional, variable density zero Mach number flows,  J. Comput. Phys. 155(1999)248-286.
+\bibitem{R29}  U. Rasthofer, F. Henke, W. A. Wall and V. Gravemeier,   An extended residual-based variational multiscale method for two-phase flow including surface tension, Comput. Methods. Appl. Mech. Eng.   200(2011) 1866-1876.
+\bibitem{R30}  T. P. Fries,   The intrinsic XFEM for two-phase flows, Int. J. Numer. Methods. Fluids.   60(2009)437-471.
+%
+%
+%\begin{thebibliography}{}
+%\bibitem{1} J.L. Guermond, A. Salgado, A splitting method for incompressible flows with variable density based on a pressure Poisson equation, Journal of Computational Physics 228(2009) 2834-2846.
+%\bibitem{2} J.H. Pyo, J. Shen, Gauge-Uzawa methods for incompressible flows with variable density, Journal of Computational Physics 221(2007) 181-197.
+%\bibitem{3} J.L. Guermond, L. Quartapelle,  A projection FEM for variable density incompressible flows, Journal of Computational Physics 165(2000) 167-188.
+%\bibitem{4} P.L. Lions, Mathematical Topics in Fluid Mechanics, Clarendon, Oxford, 1996.
+%\bibitem{5} C. Liu, N.J. Walkington, Convergence of numerical approximations of the incompressible Navier-Stokes equations with variable density and viscosity, SIAM Journal on Numerical Analysis 45(2007) 1287-1304.
+%\bibitem{6} J.L. Guermond, P. Minev , J. Shen,  An overview of projection methods for incompressible flows, Computer Methods in Applied Mechanics and Engineering 195(2006) 6011-6045.
+%\bibitem{7} J.L. Guermond, A. Salgado,  A fractional step method based on a pressure Poisson equation for incompressible flows with variable density, Numerical Analysis (2008) 913-918.
+%\bibitem{8} J.L. Guermond, A. Salgado, Error analysis of a fractional time-stepping technique for incompressible flows with variable density, SIAM Journal on Numerical Analysis 49(2011) 917-940.
+%\bibitem{9} A.J. Chorin, Numeriacl solution of the Navier-Stokes equations, Mathematics of Computation 22(1968) 745-762.
+%\bibitem{10} A.J. Chorin, On the convergence of discrete approximations to the Navier-Stokes equations, Mathematics of Computation  23(1969) 341-353.
+%\bibitem{11} R. Temam, Navier-Stokes Equations, Studies in Mathematics and Its Applications 2, North-Holland, Amsterdam, 1977.
+%\bibitem{12} R. Temam, Sur l'approximation des ¨¦quatious de Navier-Stokes par la m¨¦thode des pas fractionnaires (II)[J], Archive for Rational Mechanics and Analysis 33(1969) 377-385.
+%\bibitem{13} Y. Fraigneau, J.L. Guermond, L. Quartapelle,  Approximation of variable density incompressible flows by means of finite elements and finite volumes, Communications in Numerical Methods in Engineering 17(2001) 893-902.
+%\bibitem{14} G.P. Puckett, A.S. Almgren, J.B. Bell, D.L. Marcus, W. Rider,  A high-order projection method for tracking fluid interfaces in variable density incompressible flows, Journal of Computational Physics 130(1997)  269-282.
+%\bibitem{15} G.C. Buscaglia, R. Codina,  Fourier analysis of an equal-order incompressible flow solver stabilized by pressure gradient projection, International
+%Journal for Numerical Methods in Fluids 34(2000) 65-92.
+%\bibitem{16} J.B. Bell, D.L. Marcus,  A second order projection method for variable-density flows, Journal of Computational Physics 1992; 101:334-348.
+%\bibitem{17} A.S. Almgren, J.B. Bell, P. Colella, L.H. Howell, M.L. Welcome, A conservative adaptive projection method for the variable density incompressible Navier-Stokes equations, Journal of Computational Physics 142(1998) 1-46.
+%\bibitem{18} C. Calgaro, E. Creuse, T. Goudon,  An hybrid finite volume-finite element method for variable density incompressible flows, Journal of Computational Physics 227(2008) 4671-4696.
+%\bibitem{19} Y. He, J. Li,  Convergence of three iterative methods based on the finite element discretization for the stationary Navier-Stokes equations, Computer Methods in Applied Mechanics and Engineering 198(2009) 1351-1359.
+%\bibitem{20} R. Codina, J. Blasco, G. Buscaglia, A. Huerta,  Implementation of a stabilized finite element formulation for the incompressible Navier-Stokes equations based on a pressure gradient projection, International Journal for Numerical Methods in Fluids 37(2001) 419-444.
+%\bibitem{21} C. Dohrmann, P. Bochev,  A stabilized finite element method for the Stokes problem based on polynomial pressure projections, International Journal for Numerical Methods in Fluids   46(2004) 183-201.
+%\bibitem{22} L. Cattabriga,  Su un problema al contorno relativo al sistema di equazioni di Stokes, Rendiconti del Seminario Matematico della Universit¨¤ di Padova 31(1961) 308-340.
+%\bibitem{23} R. Temam,  Navier-Stokes Equations: Theory and Numerical Analysis, North-Holland, Amsterdam, 1984.
+%\bibitem{24} V. Girault, P.A. Raviart,  Finite Element Method for Navier-Stokes Equations: Theory and Algorithms, Springer-Verlag, Berlin, Heidelberg, 1986.
+%%\bibitem{25} R.A. Adams,  Sobolev Spaces, Academic Press, New York, 1975.
+%%\bibitem{26} L.C. Evans,  Partial Differential Equations, American Mathematical Society,1998.
+%\bibitem{27} A. Ern, J.L. Guermond, Theory and Practice of Finite Elements, Springer-Verlag, New York, 2004.
+%\bibitem{28} Z. Chen, Finite Element Methods and Their Applications, Scientific Computation, Springer, Berlin, 2005.
+%\bibitem{29} G. Tryggvason, Numerical simulations of the Rayleigh-Taylor instability, Journal of Computational Physics 75(1988)  235-282.
+%\bibitem{30} T. Schneider, N. Botta, K.J. Geratz, R. Klein,  Extension of finite volume compressible flow solvers to multidimensional, variable
+%density zero Mach number flows, Journal of Computational Physics 155(1999)  248-286.
+%\bibitem{31} U. Rasthofer, F. Henke, W.A. Wall, V. Gravemeier, An extended residual-based variational multiscale method for two-phase flow including surface tension, Computer Methods in Applied Mechanics and Engineering  200(2011)  1866-1876.
+%\bibitem{32} T. P. Fries, The intrinsic XFEM for two-phase flows, International Journal for Numerical Methods in Fluids, 60(2009)  437-471.
+\end{thebibliography}
+
+
+
+\end{document}
+\endinput
+%%
+%% End of file `elsarticle-regurization.tex'.
